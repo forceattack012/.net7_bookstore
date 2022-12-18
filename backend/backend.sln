@@ -3,19 +3,22 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BookApi.Application", "BookApi.Application\BookApi.Application.csproj", "{B15A993A-1B52-43E1-B67F-092E28F30582}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BookApi.Application", "BookApi.Application\BookApi.Application.csproj", "{B15A993A-1B52-43E1-B67F-092E28F30582}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BookApi.Domain", "BookApi.Domain\BookApi.Domain.csproj", "{07891EC8-BE6B-4B09-9C5F-21BF9567CBC0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BookApi.Domain", "BookApi.Domain\BookApi.Domain.csproj", "{07891EC8-BE6B-4B09-9C5F-21BF9567CBC0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BookApi.Infrastructure", "BookApi.Infrastructure\BookApi.Infrastructure.csproj", "{F6F69439-EA22-4533-8378-C4FD9E951A2A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BookApi.Infrastructure", "BookApi.Infrastructure\BookApi.Infrastructure.csproj", "{F6F69439-EA22-4533-8378-C4FD9E951A2A}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ShellScript", "ShellScript", "{257D73B8-6A47-469A-BE98-ADD5FADA13C4}"
+	ProjectSection(SolutionItems) = preProject
+		auto_migrate.sh = auto_migrate.sh
+		create_database.sh = create_database.sh
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
-	EndGlobalSection
-	GlobalSection(SolutionProperties) = preSolution
-		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{B15A993A-1B52-43E1-B67F-092E28F30582}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
@@ -30,5 +33,11 @@ Global
 		{F6F69439-EA22-4533-8378-C4FD9E951A2A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F6F69439-EA22-4533-8378-C4FD9E951A2A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F6F69439-EA22-4533-8378-C4FD9E951A2A}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {F7F7F999-9190-4A96-9EBF-716E7CE79113}
 	EndGlobalSection
 EndGlobal

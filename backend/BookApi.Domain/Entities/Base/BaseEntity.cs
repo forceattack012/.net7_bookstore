@@ -1,0 +1,18 @@
+﻿using System.ComponentModel.DataAnnotations;
+
+
+namespace BookApi.Domain.Entities.Base
+{
+    public abstract class BaseEntity<TId> : IEntity<TId>
+    {
+        public virtual TId Id { get; protected set; }
+        public DateTime CreateAt { get; set; }
+        public DateTime? UpdateAt { get; set; }
+        public DateTime? DeleteAt { get; set; }
+        TId IEntity<TId>.Id 
+        { 
+            get { return Id; } 
+            set { Id = value; }
+        }
+    }
+}

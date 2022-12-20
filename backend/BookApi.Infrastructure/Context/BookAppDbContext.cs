@@ -22,8 +22,8 @@ namespace BookApi.Infrastructure.Context
         protected override void OnConfiguring(DbContextOptionsBuilder options)
         {
             //For Migration
-            //var connectionString = "server=localhost;database=bookstore;user=root;password=123456789";
-            //options.UseMySql(connectionString, new MySqlServerVersion(new Version(8, 0, 29)));
+            var connectionString = "server=localhost;database=bookstore;user=root;password=123456789";
+            options.UseMySql(connectionString, new MySqlServerVersion(new Version(8, 0, 29)));
         }
 
 

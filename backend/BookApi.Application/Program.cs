@@ -1,4 +1,7 @@
 using BookApi.Infrastructure;
+using MediatR;
+using Microsoft.AspNetCore.Hosting;
+using System.Reflection;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -8,6 +11,8 @@ builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+
+builder.Services.AddMediatR(Assembly.GetExecutingAssembly());
 
 string connectionString = builder.Configuration["DbConnectionString"];
 

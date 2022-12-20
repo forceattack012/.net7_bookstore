@@ -1,5 +1,8 @@
-﻿using BookApi.Domain.Entities;
-using BookApi.Domain.Repositories;
+﻿using BookApi.Application.Commands;
+using BookApi.Application.DTOs;
+using BookApi.Application.Queries;
+using BookApi.Domain.Entities;
+using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BookApi.Application.Controllers
@@ -8,25 +11,46 @@ namespace BookApi.Application.Controllers
     [ApiController]
     public class BookController : ControllerBase
     {
-        private readonly IBookRepository _bookRepository;
+        private readonly IMediator _mediator;
 
-        public BookController(IBookRepository bookRepository)
+        public BookController(IMediator mediator)
         {
-            _bookRepository = bookRepository;
+            _mediator = mediator;
         }
 
         [HttpPost]
-        public async Task<IActionResult> CreateBook([FromBody] Book book, CancellationToken cancellationToken)
+        public async Task<IActionResult> CreateBook([FromBody] BookRequest book, CancellationToken cancellationToken)
         {
-            var newBook = await _bookRepository.Create(book, cancellationToken);
-            return Ok(newBook);
+            var id = await _mediator.Send(new CreateBookCommand(){ BookRequest = book }, cancellationToken);
+            return Ok(id);
         }
 
         [HttpGet]
         public async Task<IActionResult> GetBooks(CancellationToken cancellationToken)
         {
-            var books = await _bookRepository.GetAllAsync(cancellationToken);
+            var books = await _mediator.Send(new GetBooksQuery(), cancellationToken);
             return Ok(books);
+        }
+
+        [HttpGet("{id}")]
+        public async Task<IActionResult> GetBookById(long id, CancellationToken cancellationToken)
+        {
+            var book = await _mediator.Send(new GetBookByIdQuery() { id = id }, cancellationToken);
+            return Ok(book);
+        }
+
+        [HttpPatch("{id}")]
+        public async Task<IActionResult> UpdateBook(string id, [FromBody] BookRequest bookRequest, CancellationToken cancellation)
+        {
+            var result = await _mediator.Send(new UpdateBookCommand() { Id = id, BookRequest = bookRequest });
+            return Ok(result);
+        }
+
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> DeleteBookById(string id, CancellationToken cancellationToken)
+        {
+            var book = await _mediator.Send(new DeleteBookCommand() { Id = id }, cancellationToken);
+            return Ok(book);
         }
     }
 }

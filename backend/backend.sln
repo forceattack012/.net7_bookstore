@@ -11,9 +11,14 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BookApi.Infrastructure", "B
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ShellScript", "ShellScript", "{257D73B8-6A47-469A-BE98-ADD5FADA13C4}"
 	ProjectSection(SolutionItems) = preProject
+		auto_drop_table.sh = auto_drop_table.sh
 		auto_migrate.sh = auto_migrate.sh
+		auto_remove_migration.sh = auto_remove_migration.sh
 		create_database.sh = create_database.sh
+		create_table.sh = create_table.sh
 	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BookApi.UnitTest", "BookApi.UnitTest\BookApi.UnitTest.csproj", "{620A30EC-FEEF-486D-8751-7167EBBD81C2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +38,10 @@ Global
 		{F6F69439-EA22-4533-8378-C4FD9E951A2A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F6F69439-EA22-4533-8378-C4FD9E951A2A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F6F69439-EA22-4533-8378-C4FD9E951A2A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{620A30EC-FEEF-486D-8751-7167EBBD81C2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{620A30EC-FEEF-486D-8751-7167EBBD81C2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{620A30EC-FEEF-486D-8751-7167EBBD81C2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{620A30EC-FEEF-486D-8751-7167EBBD81C2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

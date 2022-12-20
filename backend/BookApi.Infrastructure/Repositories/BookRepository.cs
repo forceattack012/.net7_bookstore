@@ -2,7 +2,6 @@
 using BookApi.Domain.Repositories;
 using BookApi.Infrastructure.Context;
 using Microsoft.EntityFrameworkCore;
-using System.Reflection.Metadata.Ecma335;
 
 namespace BookApi.Infrastructure.Repositories
 {
@@ -16,28 +15,28 @@ namespace BookApi.Infrastructure.Repositories
         }
         public async Task<Book> Create(Book book, CancellationToken cancellation)
         {
-            book.CreateAt= DateTime.Now;
-
             var result = await _context.AddAsync(book, cancellation);
             await _context.SaveChangesAsync();
             return result.Entity;
         }
 
-        public Task Delete(Book book, CancellationToken cancellation)
+        public async Task Delete(Book book, CancellationToken cancellation)
         {
-            throw new NotImplementedException();
+            _context.Remove(book);
+            await _context.SaveChangesAsync(cancellation);
         }
 
-        public async Task<IEnumerable<Book>> GetAllAsync(CancellationToken cancellation) => await _context.Book.ToListAsync(cancellation);
-
-        public Task<Book> GetAsyncById(int id, CancellationToken cancellation)
+        public async Task<IEnumerable<Book>> GetAllAsync(CancellationToken cancellation)
         {
-            throw new NotImplementedException();
+            return await _context.Book.ToListAsync();
         }
 
-        public Task Update(Book book, CancellationToken cancellation)
+        public async Task<Book> GetAsyncById(long id, CancellationToken cancellation) => await _context.Book.SingleOrDefaultAsync(r => r.Id == id, cancellation);
+
+        public async Task Update(Book book, CancellationToken cancellation)
         {
-            throw new NotImplementedException();
+            _context.Book.Update(book);
+            await _context.SaveChangesAsync(cancellation);
         }
     }
 }

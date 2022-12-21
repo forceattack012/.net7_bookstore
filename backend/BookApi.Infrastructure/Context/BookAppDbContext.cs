@@ -9,6 +9,8 @@ namespace BookApi.Infrastructure.Context
     {
         protected readonly IConfiguration Configuration;
         public DbSet<Book> Book { get; set; }
+        public DbSet<Order> Order { get; set; }
+        public DbSet<Customer> Customer { get; set; }
 
         public BookAppDbContext(){
 
@@ -30,6 +32,8 @@ namespace BookApi.Infrastructure.Context
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.ApplyConfiguration(new BookEntityConfiguration());
+            modelBuilder.ApplyConfiguration(new CustomerEntityConfiguration());
+            modelBuilder.ApplyConfiguration(new OrderEntityConfiguration());
         }
     }
 }

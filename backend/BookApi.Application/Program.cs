@@ -2,6 +2,7 @@ using BookApi.Infrastructure;
 using MediatR;
 using Microsoft.AspNetCore.Hosting;
 using System.Reflection;
+using System.Text.Json.Serialization;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -15,6 +16,9 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddMediatR(Assembly.GetExecutingAssembly());
 
 string connectionString = builder.Configuration["DbConnectionString"];
+
+builder.Services.AddControllers().AddJsonOptions(x =>
+                x.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles);
 
 builder.Services.AddInfrastructure(connectionString);
 

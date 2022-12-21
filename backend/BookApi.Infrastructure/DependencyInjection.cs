@@ -23,6 +23,9 @@ namespace BookApi.Infrastructure
                     .EnableDetailedErrors()
             );
             services.AddScoped<IBookRepository, BookRepository>();
+            services.AddScoped<IOrderRepository, OrderRepository>();
+            services.AddScoped<ICustomerRepository, CustomerRepository>();
+
             return services;
         }
     }

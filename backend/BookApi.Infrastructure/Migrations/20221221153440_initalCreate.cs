@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace BookApi.Infrastructure.Migrations
 {
-    public partial class initialCreate : Migration
+    public partial class initalCreate : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -41,9 +41,12 @@ namespace BookApi.Infrastructure.Migrations
                 {
                     Id = table.Column<long>(type: "bigint", nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
+                    Quailty = table.Column<int>(type: "int", nullable: false),
                     Total = table.Column<decimal>(type: "decimal(65,30)", nullable: false),
-                    Balance = table.Column<decimal>(type: "decimal(65,30)", nullable: false),
+                    IsPayment = table.Column<bool>(type: "tinyint(1)", nullable: false),
+                    PaymentDate = table.Column<DateTime>(type: "datetime(6)", nullable: true),
                     CustomerId = table.Column<long>(type: "bigint", nullable: false),
+                    BookId = table.Column<long>(type: "bigint", nullable: false),
                     CreateAt = table.Column<DateTime>(type: "datetime(6)", nullable: false),
                     UpdateAt = table.Column<DateTime>(type: "datetime(6)", nullable: true),
                     DeleteAt = table.Column<DateTime>(type: "datetime(6)", nullable: true)

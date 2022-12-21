@@ -4,21 +4,20 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace BookApi.Infrastructure.Context.EntityConfiguration
 {
-    public class BookEntityConfiguration : IEntityTypeConfiguration<Book>
+    public class CustomerEntityConfiguration : IEntityTypeConfiguration<Customer>
     {
-        public void Configure(EntityTypeBuilder<Book> builder)
+        public void Configure(EntityTypeBuilder<Customer> builder)
         {
-            builder.ToTable(nameof(Book));
+            builder.ToTable(nameof(Customer));
             builder.HasKey(e => e.Id);
-            builder.Property(e => e.Name).IsRequired();
-            builder.Property(e => e.Description);
-            builder.Property(e => e.PublishedAt).IsRequired();
-            builder.Property(e => e.Price).IsRequired();
+            builder.Property(e => e.Address);
+            builder.Property(e => e.FirstName);
+            builder.Property(e => e.LastName);
             builder.Property(e => e.CreateAt).IsRequired();
             builder.Property(e => e.DeleteAt);
             builder.Property(e => e.UpdateAt);
             builder.HasMany(e => e.Orders)
-                .WithOne(c => c.Book)
+                .WithOne(e => e.Customer)
                 .OnDelete(DeleteBehavior.ClientSetNull);
         }
     }

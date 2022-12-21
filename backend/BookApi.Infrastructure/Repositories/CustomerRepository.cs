@@ -1,6 +1,7 @@
 ﻿using BookApi.Domain.Entities;
 using BookApi.Domain.Repositories;
 using BookApi.Infrastructure.Context;
+using Microsoft.EntityFrameworkCore;
 
 namespace BookApi.Infrastructure.Repositories
 {
@@ -13,9 +14,12 @@ namespace BookApi.Infrastructure.Repositories
             _context = context;
         }
 
-        public Task<Customer> Create(Customer customer, CancellationToken cancellation)
+        public async Task<Customer> Create(Customer customer, CancellationToken cancellation)
         {
-            throw new NotImplementedException();
+            var result = await _context.Customer.AddAsync(customer, cancellation);
+            await _context.SaveChangesAsync();
+
+            return result.Entity;
         }
 
         public Task Delete(Customer customer, CancellationToken cancellation)
@@ -28,9 +32,9 @@ namespace BookApi.Infrastructure.Repositories
             throw new NotImplementedException();
         }
 
-        public Task<Customer> GetAsyncById(long id, CancellationToken cancellation)
+        public async Task<Customer> GetAsyncById(long id, CancellationToken cancellation)
         {
-            throw new NotImplementedException();
+            return await _context.Customer.SingleOrDefaultAsync(r => r.Id == id);
         }
 
         public Task Update(Customer customer, CancellationToken cancellation)

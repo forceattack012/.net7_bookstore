@@ -11,8 +11,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BookApi.Infrastructure.Migrations
 {
     [DbContext(typeof(BookAppDbContext))]
-    [Migration("20221220184626_initialCreate")]
-    partial class initialCreate
+    [Migration("20221221153440_initalCreate")]
+    partial class initalCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -92,7 +92,7 @@ namespace BookApi.Infrastructure.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Customer");
+                    b.ToTable("Customer", (string)null);
                 });
 
             modelBuilder.Entity("BookApi.Domain.Entities.Order", b =>
@@ -101,8 +101,8 @@ namespace BookApi.Infrastructure.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("bigint");
 
-                    b.Property<decimal>("Balance")
-                        .HasColumnType("decimal(65,30)");
+                    b.Property<long>("BookId")
+                        .HasColumnType("bigint");
 
                     b.Property<DateTime>("CreateAt")
                         .HasColumnType("datetime(6)");
@@ -112,6 +112,15 @@ namespace BookApi.Infrastructure.Migrations
 
                     b.Property<DateTime?>("DeleteAt")
                         .HasColumnType("datetime(6)");
+
+                    b.Property<bool>("IsPayment")
+                        .HasColumnType("tinyint(1)");
+
+                    b.Property<DateTime?>("PaymentDate")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<int>("Quailty")
+                        .HasColumnType("int");
 
                     b.Property<decimal>("Total")
                         .HasColumnType("decimal(65,30)");
@@ -123,7 +132,7 @@ namespace BookApi.Infrastructure.Migrations
 
                     b.HasIndex("CustomerId");
 
-                    b.ToTable("Order");
+                    b.ToTable("Order", (string)null);
                 });
 
             modelBuilder.Entity("BookApi.Domain.Entities.Book", b =>

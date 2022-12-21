@@ -8,7 +8,6 @@ namespace BookApi.Domain.Entities.Base
 {
     public interface IEntity<TId>
     {
-        TId Id { get; set; }
         DateTime CreateAt { get; set; }
         DateTime? UpdateAt { get; set; }
         DateTime? DeleteAt { get; set; }
